@@ -11,7 +11,6 @@ class template():
 
         """
         self._path = path
-        print(self._path)
         self._file = open(self._path).read()
 
     def get(self):

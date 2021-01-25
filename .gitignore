@@ -1,2 +1,6 @@
 *.zip
 *.swp
+.env
+*.tfstate*
+.terraform
+*.temp

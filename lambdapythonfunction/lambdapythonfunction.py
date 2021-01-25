@@ -1,9 +1,11 @@
 import urllib.request
 import urllib.parse
 from os import path
-from jinja2 import Environment, FileSystemLoader
+#  from jinja2 import Environment, FileSystemLoader
+from myjinja import jinja
 
-env = Environment(loader=FileSystemLoader(path.join(path.dirname(__file__), 'templates'), encoding='utf8'))
+#  env = Environment(loader=FileSystemLoader(path.join(path.dirname(__file__), 'templates'), encoding='utf8'))
+env = jinja(path.join(path.dirname(__file__), 'templates'))
 
 def send(msg, status=200):
     return {

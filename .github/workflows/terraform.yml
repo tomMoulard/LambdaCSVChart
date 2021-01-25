@@ -67,6 +67,13 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
+    # Gather python code
+    - name: Building ZIP
+      run: |
+        cd ${SRC}
+        zip -r ${ZIP} .
+        mv ${ZIP} ..
+
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan

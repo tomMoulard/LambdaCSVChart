@@ -49,6 +49,17 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
+    # Output terraform changes needed
+    - name: Terraform Format export
+      run: terraform fmt; git diff > patch.patch
+
+    # Upload terraform fixes
+    - uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: test-artifacts
+        path: path.patch
+
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check

@@ -70,9 +70,9 @@ jobs:
     # Gather python code
     - name: Building ZIP
       run: |
-        cd ${SRC}
-        zip -r ${ZIP} .
-        mv ${ZIP} ..
+        cd lambdapythonfunction
+        zip -r python.zip .
+        mv python.zip ..
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan

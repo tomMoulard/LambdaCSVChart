@@ -8,7 +8,7 @@ resource "aws_lambda_function" "lambda_function" {
   runtime          = var.runtime
   filename         = var.src_zip
   function_name    = var.function_name
-  source_code_hash = "${filebase64sha256(var.src_zip)}"
+  source_code_hash = filebase64sha256(var.src_zip)
 }
 
 resource "aws_iam_role" "lambda_exec_role" {

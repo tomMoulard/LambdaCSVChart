@@ -51,14 +51,9 @@ jobs:
 
     # Output terraform changes needed
     - name: Terraform Format export
-      run: terraform fmt; git diff > patch.patch
-
-    # Upload terraform fixes
-    - uses: actions/upload-artifact@v2
-      if: failure()
-      with:
-        name: test-artifacts
-        path: path.patch
+      run: |
+        terraform fmt
+        git diff > patch.patch
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
@@ -67,6 +62,13 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan
+
+    # Upload terraform fixes
+    - uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: test-artifacts
+        path: path.patch
 
       # On push to main, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
